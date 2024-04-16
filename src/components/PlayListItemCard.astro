@@ -12,13 +12,13 @@ const artistsString = artists.join(", ");
 
 <a
   href={`/paylist/${id}`}
-  class="playlist-item transition-all duration-300 shadow-lg hover:shadow-xl flex relative p-2 overflow-hidden items-center gap-5 rounded-md hover:bg-zinc-800"
+  class="playlist-item transition-all duration-300 shadow-lg hover:shadow-xl flex relative p-2 overflow-hidden items-center gap-5 rounded-md hover:bg-zinc-800 bg-zinc-500/30"
 >
   <picture class="h-12 w-12 float-none">
     <img src={cover} alt={`Cover of ${title} by ${artistsString}`} />
   </picture>
   <div class="flex flex-auto flex-col truncate">
     <h4 class="text-white text-sm">{title}</h4>
-    <span class="text-xs text-gray-400">{artists}</span>
+    <span class="text-xs text-gray-400">{artistsString}</span>
   </div>
 </a>
