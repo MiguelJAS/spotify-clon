@@ -23,10 +23,9 @@ import AsideMenu from "../components/AsideMenu.astro";
         <AsideMenu />
       </aside>
       <main class="[grid-area:main] bg-zinc-900 rounded-lg overflow-y-auto">
+        <slot />
       </main>
-
       <footer class="[grid-area:player] min-h-[100px]"></footer>
-      <slot />
     </div>
   </body>
 </html>
@@ -43,7 +42,48 @@ import AsideMenu from "../components/AsideMenu.astro";
 
 <style is:global>
   html {
-    font-family: system-ui, sans-serif;
-    background: #000;
+    font-family: "CircularStd", system-ui, sans-serif;
+    background: #010101;
+    color: white;
+  }
+
+  @font-face {
+    font-family: "CircularStd";
+    src: url("/fonts/CircularStd-Medium.woff2") format("woff2");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "CircularStd";
+    src: url("/fonts/CircularStd-Book.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "CircularStd";
+    src: url("/fonts/CircularStd-Light.woff2") format("woff2");
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "CircularStd";
+    src: url("/fonts/CircularStd-Bold.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "CircularStd";
+    src: url("/fonts/CircularStd-Black.woff2") format("woff2");
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
   }
 </style>
