@@ -28,7 +28,11 @@ import { Player } from "@/components/Player";
       <main class="[grid-area:main] bg-zinc-900 rounded-lg overflow-y-auto">
         <slot />
       </main>
-      <footer class="[grid-area:player] min-h-[100px]"><Player /></footer>
+      <footer class="[grid-area:player] min-h-[100px]">
+        <Player client:load transition:name="media-player" transition:persist />
+        <!-- client es para que renderice en el cliente y por lo tanto tenga interactividad en el cliente -->
+        <!-- y el transition es para que se persista el estado de cuando ponemos una cancion y cambiamos de menu para que siga sonando -->
+      </footer>
     </div>
 
     <style>

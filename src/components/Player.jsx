@@ -1,18 +1,41 @@
-import { useState } from "react"
+import { usePlayerStore } from "@/store/playerStore"
+import { useEffect, useRef, useState } from "react"
 
-const Pause = () => (
-    <svg data-encore-id="icon" role="img" aria-hidden="true" viewBox="0 0 16 16" ><path d="M2.7 1a.7.7 0 0 0-.7.7v12.6a.7.7 0 0 0 .7.7h2.6a.7.7 0 0 0 .7-.7V1.7a.7.7 0 0 0-.7-.7H2.7zm8 0a.7.7 0 0 0-.7.7v12.6a.7.7 0 0 0 .7.7h2.6a.7.7 0 0 0 .7-.7V1.7a.7.7 0 0 0-.7-.7h-2.6z"></path></svg>
+export const Pause = () => (
+<svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-player-pause" width="44" height="44" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M6 5m0 1a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v12a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1z" />
+  <path d="M14 5m0 1a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v12a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1z" />
+</svg>
 )
 
-const Play = () => (
-    <svg data-encore-id="icon" role="img" aria-hidden="true" viewBox="0 0 16 16" class="Svg-sc-ytk21e-0 dYnaPI"><path d="M3 1.713a.7.7 0 0 1 1.05-.607l10.89 6.288a.7.7 0 0 1 0 1.212L4.05 14.894A.7.7 0 0 1 3 14.288V1.713z"></path></svg>
+export const Play = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-caret-right" width="44" height="44" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#ffffff" fill="none" strokeLinecap="round" strokeLinejoin="round">
+    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+    <path d="M10 18l6 -6l-6 -6v12" />
+  </svg>
 )
+
+
 
 export function Player() {
     
-    const [isPlaying, setIsPlaying] = useState(false)
+    const {isPlaying, setIsPlaying} = usePlayerStore(state => state)
+    const [currentSong, setCurrentSong] = useState(null)
+    const audioRef = useRef()
 
-    function handleButton(){
+    useEffect(() => {
+        audioRef.current.src = `/public/music/Flo Rida - Right Round (Lyrics)_EI-4f3yUq5U.mp3`
+    }, [])
+
+    function handleClick(){
+        if(isPlaying){
+            audioRef.current.pause()
+        }else{
+            audioRef.current.play()
+            audioRef.current.volume = 0.2
+        }
+
         setIsPlaying(!isPlaying)
     }
 
@@ -24,12 +47,14 @@ export function Player() {
             <div>Current song</div>
             <div className=" gird place-content-center gap-4">
                 <div className="flex justify-center">
-                <button className=" text-red-500 font-bold bg-white rounded-full p-2" onClick={handleButton}>{stateButton}</button>
+                <button className=" text-red-500 font-bold bg-green-500 rounded-full p-2" onClick={handleClick}>{stateButton}</button>
                 </div>
             </div>
 
             <div>Volumen</div>
+            <audio ref={audioRef}></audio>
         </div></>
      
     )
 }
+
